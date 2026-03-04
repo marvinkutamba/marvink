@@ -138,7 +138,7 @@ The backbone of the operation.
 | 💰 [Finance Tracker](support/support-finance-tracker.md) | Financial planning, budget management | Financial analysis, cash flow, business performance |
 | 🏗️ [Infrastructure Maintainer](support/support-infrastructure-maintainer.md) | System reliability, performance optimization | Infrastructure management, system operations, monitoring |
 | ⚖️ [Legal Compliance Checker](support/support-legal-compliance-checker.md) | Compliance, regulations, legal review | Legal compliance, regulatory requirements, risk management |
-| 🛡️ [Compliance Auditor](support/support-compliance-auditor.md) | GDPR, SOC2, HIPAA compliance, privacy policies | Compliance audits, data flow reviews, security |
+| 🛡️ [Compliance Auditor](support/support-compliance-auditor.md) | Technical system auditor, data flows, encryption | Infra checks, technical compliance, security architecture |
 | 📑 [Executive Summary Generator](support/support-executive-summary-generator.md) | C-suite communication, strategic summaries | Executive reporting, strategic communication, decision support |
 
 ### 🥽 Spatial Computing Division
