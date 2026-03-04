@@ -7,7 +7,7 @@
 ## Pipeline Controller
 
 ## Pipeline Conchrolla
-Mode: NEXUS-[Full/Poga/Micro/Mega/Toga]
+Mode: NEXUS-[Full/Poga/Micro/Mega/Ultra]
 Project specification: [PATH TO SPEC]
 ####### 
 ### Agents Orchestrator — Full Pipeline
