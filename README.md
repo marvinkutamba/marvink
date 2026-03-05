@@ -291,8 +291,8 @@ Each agent is designed with:
 
 ## 📊 Stats
 
-- 🎭 **55+ Specialized Agents** across 9 divisions
-- 📝 **10,000+ lines** of personality, process, and code examples
+- 🎭 **56 Specialized Agents** across 9 divisions
+- 📝 **13,500+ lines** of personality, process, and code examples
 - ⏱️ **Months of iteration** from real-world usage
 - 🌟 **Battle-tested** in production environments
 - 💬 **50+ requests** in first 12 hours on Reddit
