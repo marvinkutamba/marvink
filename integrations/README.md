@@ -1,10 +1,11 @@
 # 🔌 Integrations
 
-This directory contains The Agency's 61 AI agents converted into formats
+This directory contains The Agency's 68 AI agents converted into formats
 compatible with popular agentic coding tools.
 
 ## Supported Tools
 
+- **[Codex](#codex)** — one meta-skill with internal sub-skills in `codex/`
 - **[Claude Code](#claude-code)** — `.md` agents, use the repo directly
 - **[Antigravity](#antigravity)** — `SKILL.md` per agent in `antigravity/`
 - **[Gemini CLI](#gemini-cli)** — extension + `SKILL.md` files in `gemini-cli/`
@@ -21,6 +22,7 @@ compatible with popular agentic coding tools.
 
 # Install for a specific tool
 ./scripts/install.sh --tool antigravity
+./scripts/install.sh --tool codex
 ./scripts/install.sh --tool gemini-cli
 ./scripts/install.sh --tool cursor
 ./scripts/install.sh --tool aider
@@ -35,6 +37,21 @@ If you add or modify agents, regenerate all integration files:
 ```bash
 ./scripts/convert.sh
 ```
+
+---
+
+## Codex
+
+The Agency is packaged for Codex as a single public meta-skill named
+`agency-agents`. The skill routes into internal specialist sub-skills under
+`codex/agency-agents/sub/` and includes NEXUS references under
+`codex/agency-agents/references/`.
+
+```bash
+./scripts/install.sh --tool codex
+```
+
+See [codex/README.md](codex/README.md) for details.
 
 ---
 

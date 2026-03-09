@@ -1,6 +1,6 @@
 # Aider Integration
 
-All 61 Agency agents are consolidated into a single `CONVENTIONS.md` file.
+All Agency agents are consolidated into a single `CONVENTIONS.md` file.
 Aider reads this file automatically when it's present in your project root.
 
 ## Install
