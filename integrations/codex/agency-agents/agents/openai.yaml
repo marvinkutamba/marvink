@@ -1,0 +1,4 @@
+interface:
+  display_name: "The Agency"
+  short_description: "Agency Codex meta-skill with NEXUS orchestration"
+  default_prompt: "Use $agency-agents to pick the right Agency specialist or run a NEXUS-style multi-role workflow inside Codex."

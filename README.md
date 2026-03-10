@@ -44,7 +44,7 @@ Each agent file contains:
 
 Browse the agents below and copy/adapt the ones you need!
 
-### Option 3: Use with Other Tools (Cursor, Aider, Windsurf, Gemini CLI, OpenCode)
+### Option 3: Use with Other Tools (Codex, Cursor, Aider, Windsurf, Gemini CLI, OpenCode)
 
 ```bash
 # Step 1 -- generate integration files for all supported tools
@@ -54,6 +54,7 @@ Browse the agents below and copy/adapt the ones you need!
 ./scripts/install.sh
 
 # Or target a specific tool directly
+./scripts/install.sh --tool codex
 ./scripts/install.sh --tool cursor
 ./scripts/install.sh --tool aider
 ./scripts/install.sh --tool windsurf
@@ -325,7 +326,7 @@ Each agent is designed with:
 
 ## 📊 Stats
 
-- 🎭 **61 Specialized Agents** across 9 divisions
+- 🎭 **68 Specialized Agents** across 9 divisions
 - 📝 **10,000+ lines** of personality, process, and code examples
 - ⏱️ **Months of iteration** from real-world usage
 - 🌟 **Battle-tested** in production environments
@@ -340,6 +341,7 @@ The Agency works natively with Claude Code, and ships conversion + install scrip
 ### Supported Tools
 
 - **[Claude Code](https://claude.ai/code)** — native `.md` agents, no conversion needed → `~/.claude/agents/`
+- **Codex** — one meta-skill with internal sub-skills + NEXUS references → `~/.codex/skills/agency-agents/`
 - **[Antigravity](https://github.com/google-gemini/antigravity)** — `SKILL.md` per agent → `~/.gemini/antigravity/skills/`
 - **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** — extension + `SKILL.md` files → `~/.gemini/extensions/agency-agents/`
 - **[OpenCode](https://opencode.ai)** — `.md` agent files → `.opencode/agent/`
@@ -370,20 +372,22 @@ The installer scans your system for installed tools, shows a checkbox UI, and le
 
   System scan: [*] = detected on this machine
 
-  [x]  1)  [*]  Claude Code     (claude.ai/code)
-  [x]  2)  [*]  Antigravity     (~/.gemini/antigravity)
-  [ ]  3)  [ ]  Gemini CLI      (gemini extension)
-  [ ]  4)  [ ]  OpenCode        (opencode.ai)
-  [x]  5)  [*]  Cursor          (.cursor/rules)
-  [ ]  6)  [ ]  Aider           (CONVENTIONS.md)
-  [ ]  7)  [ ]  Windsurf        (.windsurfrules)
+  [x]  1)  [*]  Codex           (~/.codex/skills)
+  [x]  2)  [*]  Claude Code     (claude.ai/code)
+  [x]  3)  [*]  Antigravity     (~/.gemini/antigravity)
+  [ ]  4)  [ ]  Gemini CLI      (gemini extension)
+  [ ]  5)  [ ]  OpenCode        (opencode.ai)
+  [x]  6)  [*]  Cursor          (.cursor/rules)
+  [ ]  7)  [ ]  Aider           (CONVENTIONS.md)
+  [ ]  8)  [ ]  Windsurf        (.windsurfrules)
 
-  [1-7] toggle   [a] all   [n] none   [d] detected
+  [1-8] toggle   [a] all   [n] none   [d] detected
   [Enter] install   [q] quit
 ```
 
 **Or install a specific tool directly:**
 ```bash
+./scripts/install.sh --tool codex
 ./scripts/install.sh --tool cursor
 ./scripts/install.sh --tool opencode
 ./scripts/install.sh --tool antigravity
@@ -397,6 +401,24 @@ The installer scans your system for installed tools, shows a checkbox UI, and le
 ---
 
 ### Tool-Specific Instructions
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+The Codex integration packages the full Agency catalog as one public meta-skill
+with internal role sub-skills and NEXUS references.
+
+```bash
+./scripts/install.sh --tool codex
+```
+
+Then invoke it in Codex:
+```
+Use $agency-agents to pick the right Agency specialist for this task.
+```
+
+See [integrations/codex/README.md](integrations/codex/README.md) for details.
+</details>
 
 <details>
 <summary><strong>Claude Code</strong></summary>
@@ -435,7 +457,7 @@ See [integrations/antigravity/README.md](integrations/antigravity/README.md) for
 <details>
 <summary><strong>Gemini CLI</strong></summary>
 
-Installs as a Gemini CLI extension with 61 skills + a manifest.
+Installs as a Gemini CLI extension with the full Agency roster + a manifest.
 
 ```bash
 ./scripts/install.sh --tool gemini-cli
@@ -539,7 +561,7 @@ When you add new agents or edit existing ones, regenerate all integration files:
 
 - [ ] Interactive agent selector web tool
 - [x] Multi-agent workflow examples -- see [examples/](examples/)
-- [x] Multi-tool integration scripts (Claude Code, Antigravity, Gemini CLI, OpenCode, Cursor, Aider, Windsurf)
+- [x] Multi-tool integration scripts (Codex, Claude Code, Antigravity, Gemini CLI, OpenCode, Cursor, Aider, Windsurf)
 - [ ] Video tutorials on agent design
 - [ ] Community agent marketplace
 - [ ] Agent "personality quiz" for project matching

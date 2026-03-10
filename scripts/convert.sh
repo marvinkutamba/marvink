@@ -10,6 +10,7 @@
 #   ./scripts/convert.sh [--tool <name>] [--out <dir>] [--help]
 #
 # Tools:
+#   codex        — Codex meta-skill with internal sub-skills (~/.codex/skills/)
 #   antigravity  — Antigravity skill files (~/.gemini/antigravity/skills/)
 #   gemini-cli   — Gemini CLI extension (skills/ + gemini-extension.json)
 #   opencode     — OpenCode agent files (.opencode/agent/*.md)
@@ -45,6 +46,7 @@ AGENT_DIRS=(
   design engineering marketing product project-management
   testing support spatial-computing specialized
 )
+CODEX_SKILL_NAME="agency-agents"
 
 # --- Usage ---
 usage() {
@@ -74,6 +76,10 @@ get_body() {
 # "Frontend Developer" → "frontend-developer"
 slugify() {
   echo "$1" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]/-/g' | sed 's/--*/-/g' | sed 's/^-//;s/-$//'
+}
+
+title_case() {
+  echo "$1" | tr '-' ' ' | awk '{ for (i = 1; i <= NF; i++) $i = toupper(substr($i,1,1)) substr($i,2); print }'
 }
 
 # --- Per-tool converters ---
@@ -175,11 +181,67 @@ ${body}
 HEREDOC
 }
 
+CODEX_ROSTER_TMP="$(mktemp)"
+CODEX_CURRENT_CATEGORY=""
+
+init_codex() {
+  local dest="$OUT_DIR/codex/$CODEX_SKILL_NAME"
+  rm -rf "$dest"
+  mkdir -p "$dest/sub" "$dest/references" "$dest/agents"
+  CODEX_CURRENT_CATEGORY=""
+
+  cat > "$CODEX_ROSTER_TMP" <<'HEREDOC'
+# The Agency Roster for Codex
+
+Use this file to pick the exact specialist sub-skill to load. Each entry maps
+an original Agency agent to an internal Codex `sub/.../subskill.md` file.
+HEREDOC
+}
+
+convert_codex() {
+  local file="$1"
+  local name description slug outfile body category category_title source_name
+
+  name="$(get_field "name" "$file")"
+  description="$(get_field "description" "$file")"
+  slug="$(basename "$file" .md)"
+  body="$(get_body "$file")"
+  category="$(basename "$(dirname "$file")")"
+  category_title="$(title_case "$category")"
+  source_name="$(basename "$file")"
+
+  outfile="$OUT_DIR/codex/$CODEX_SKILL_NAME/sub/$slug/subskill.md"
+  mkdir -p "$(dirname "$outfile")"
+
+  cat > "$outfile" <<HEREDOC
+# ${name}
+
+- Category: \`${category_title}\`
+- Description: ${description}
+- Source: \`${category}/${source_name}\`
+
+${body}
+HEREDOC
+
+  if [[ "$category" != "$CODEX_CURRENT_CATEGORY" ]]; then
+    printf "\n## %s\n" "$category_title" >> "$CODEX_ROSTER_TMP"
+    CODEX_CURRENT_CATEGORY="$category"
+  fi
+
+  cat >> "$CODEX_ROSTER_TMP" <<HEREDOC
+
+### ${name}
+- Description: ${description}
+- Load: \`sub/${slug}/subskill.md\`
+- Source: \`${category}/${source_name}\`
+HEREDOC
+}
+
 # Aider and Windsurf are single-file formats — accumulate into temp files
 # then write at the end.
 AIDER_TMP="$(mktemp)"
 WINDSURF_TMP="$(mktemp)"
-trap 'rm -f "$AIDER_TMP" "$WINDSURF_TMP"' EXIT
+trap 'rm -f "$AIDER_TMP" "$WINDSURF_TMP" "$CODEX_ROSTER_TMP"' EXIT
 
 # Write Aider/Windsurf headers once
 cat > "$AIDER_TMP" <<'HEREDOC'
@@ -251,6 +313,10 @@ run_conversions() {
   local tool="$1"
   local count=0
 
+  if [[ "$tool" == "codex" ]]; then
+    init_codex
+  fi
+
   for dir in "${AGENT_DIRS[@]}"; do
     local dirpath="$REPO_ROOT/$dir"
     [[ -d "$dirpath" ]] || continue
@@ -266,6 +332,7 @@ run_conversions() {
       [[ -n "$name" ]] || continue
 
       case "$tool" in
+        codex)        convert_codex        "$file" ;;
         antigravity) convert_antigravity "$file" ;;
         gemini-cli)  convert_gemini_cli  "$file" ;;
         opencode)    convert_opencode    "$file" ;;
@@ -291,6 +358,82 @@ write_single_file_outputs() {
   cp "$WINDSURF_TMP" "$OUT_DIR/windsurf/.windsurfrules"
 }
 
+write_codex_outputs() {
+  local dest="$OUT_DIR/codex/$CODEX_SKILL_NAME"
+
+  mkdir -p "$dest/references" "$dest/agents"
+
+  cat > "$dest/SKILL.md" <<'HEREDOC'
+---
+name: agency-agents
+description: Meta-skill for The Agency on Codex. Use when the user wants a specialized Agency role, multi-role coordination, or the NEXUS orchestration workflow inside Codex.
+---
+
+# The Agency for Codex
+
+`agency-agents` packages the full Agency roster as one public Codex skill with
+internal role sub-skills under `sub/` and NEXUS references under `references/`.
+
+## When To Use
+
+- The user asks for The Agency, NEXUS, or a named Agency specialist.
+- The work benefits from a temporary specialist persona instead of a generic assistant.
+- The task needs multi-role coordination across product, design, engineering, QA, launch, or operations.
+
+## Operating Model
+
+1. Decide whether the task needs one specialist, a small squad, or a NEXUS flow.
+2. Read `references/roster.md` if the exact role is not obvious.
+3. Load only the relevant `sub/*/subskill.md` files.
+4. Read `references/strategy/QUICKSTART.md` before any full-pipeline orchestration.
+5. Keep project truth in the repo being edited; Agency roles are execution overlays, not replacement project docs.
+
+## Routing Heuristics
+
+- UI, frontend, components, accessibility, browser UX -> frontend, UI, UX, or whimsy roles
+- APIs, infrastructure, security, data, AI, mobile -> backend, DevOps, security, data, AI, or mobile roles
+- Discovery, prioritization, project planning -> product and project-management roles
+- QA, evidence, performance, API verification, accessibility -> testing roles
+- Growth, content, social, launch, app stores -> marketing roles
+- Ops, finance, compliance, analytics, support -> support roles
+- Spatial/XR/visionOS workflows -> spatial-computing roles
+- Cross-functional orchestration -> `sub/agents-orchestrator/subskill.md` plus NEXUS references
+
+## Key References
+
+- Roster: `references/roster.md`
+- NEXUS quick start: `references/strategy/QUICKSTART.md`
+- Master strategy: `references/strategy/nexus-strategy.md`
+- Phase playbooks: `references/strategy/playbooks/`
+- Scenario runbooks: `references/strategy/runbooks/`
+- Coordination prompts/templates: `references/strategy/coordination/`
+- Worked examples: `references/examples/`
+
+## Minimal Loading Rule
+
+Do not load the whole catalog by default.
+
+Recommended sequence:
+
+1. Read this file.
+2. Read `references/roster.md` only if role selection is unclear.
+3. Load 1-3 role sub-skills from `sub/`.
+4. Pull in NEXUS references only for orchestration-heavy work.
+5. Return to the project repo and execute there.
+HEREDOC
+
+  cat > "$dest/agents/openai.yaml" <<'HEREDOC'
+interface:
+  display_name: "The Agency"
+  short_description: "Agency Codex meta-skill with NEXUS orchestration"
+  default_prompt: "Use $agency-agents to pick the right Agency specialist or run a NEXUS-style multi-role workflow inside Codex."
+HEREDOC
+
+  cp "$CODEX_ROSTER_TMP" "$dest/references/roster.md"
+  cp -R "$REPO_ROOT/strategy" "$dest/references/"
+  cp -R "$REPO_ROOT/examples" "$dest/references/"
+}
+
 # --- Entry point ---
 
 main() {
@@ -305,7 +448,7 @@ main() {
     esac
   done
 
-  local valid_tools=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "all")
+  local valid_tools=("codex" "antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "all")
   local valid=false
   for t in "${valid_tools[@]}"; do [[ "$t" == "$tool" ]] && valid=true && break; done
   if ! $valid; then
@@ -321,7 +464,7 @@ main() {
 
   local tools_to_run=()
   if [[ "$tool" == "all" ]]; then
-    tools_to_run=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf")
+    tools_to_run=("codex" "antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf")
   else
     tools_to_run=("$tool")
   fi
@@ -343,6 +486,11 @@ main() {
 }
 HEREDOC
       info "Wrote gemini-extension.json"
+    fi
+
+    if [[ "$t" == "codex" ]]; then
+      write_codex_outputs
+      info "Wrote Codex skill package"
     fi
 
     info "Converted $count agents for $t"
