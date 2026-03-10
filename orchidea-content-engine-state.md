@@ -36,9 +36,14 @@ content_pillars:
   - "Digital Transformation — AI roadmaps, adoption, governance for mid-market"
 active_platforms:
   - blog            # primary SEO channel
-  - linkedin        # strongest current channel — B2B audience
+  - linkedin        # strongest current channel — B2B audience (LinkedIn Authority Builder)
   - twitter         # @orchideadigital
   - instagram       # @orchidea.digital
+linkedin_config:
+  company_page: "orchidea-digital"
+  executive_personal_brand: "Dylan Angloher"    # CEO — highest-reach personal brand
+  formats: [document_carousel, article, company_posts, executive_post]
+  newsletter: false                              # set to true + name when launched
 weekly_output_target:
   pillar_posts: 1
   platform_packages: 4    # blog + LinkedIn + Twitter + Instagram
@@ -64,9 +69,12 @@ blog:
   keyword_ranking_target: top_20           # page 2 → page 1 by cycle 8
 
 linkedin:
-  engagement_rate_pct: 3.0                 # company page posts
+  carousel_save_rate_pct: 3.0              # document carousel saves — primary quality signal
+  post_engagement_rate_pct: 3.0           # company page posts
+  executive_post_engagement_rate_pct: 6.0 # Dylan's personal brand posts
+  article_views_30d: 500
+  follower_growth_monthly_pct: 8.0
   impressions_per_post: 1000
-  click_through_rate_pct: 2.0
 
 twitter:
   engagement_rate_pct: 2.0
@@ -147,13 +155,13 @@ cluster_4_pillar: "performance measurement"
 
 ### Content Cluster Progress
 
-| Pillar | Target Keyword | Current Ranking | First Published | Last Updated |
-|--------|---------------|-----------------|-----------------|--------------|
-| Marketing Automation | automated marketing platform | — | — | — |
-| Growth Without Hiring | scale marketing without hiring | — | — | — |
-| AI in Marketing | AI content marketing | — | — | — |
-| Performance & Measurement | content marketing ROI | — | — | — |
-| Digital Transformation | AI marketing roadmap | — | — | — |
+| Pillar | Target Keyword | Blog Ranking | LinkedIn Article | First Published | Last Updated |
+|--------|---------------|-------------|-----------------|-----------------|--------------|
+| Marketing Automation | automated marketing platform | — | — | — | — |
+| Growth Without Hiring | scale marketing without hiring | — | — | — | — |
+| AI in Marketing | AI content marketing | — | — | — | — |
+| Performance & Measurement | content marketing ROI | — | — | — | — |
+| Digital Transformation | AI marketing roadmap | — | — | — | — |
 
 ---
 

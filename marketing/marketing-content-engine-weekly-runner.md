@@ -237,9 +237,26 @@ Draft: [paste 4a output]
 Deliver: Optimized draft + change summary.
 ```
 
-**4c — Platform Adaptation** (all in parallel, after 4b approved)
+**4c — Platform Adaptation** (all five in parallel, after 4b approved)
 
-Run all four simultaneously:
+Run all five simultaneously:
+
+**LinkedIn Authority Builder**:
+```
+Activate LinkedIn Authority Builder.
+Source: [paste 4b optimized article]
+[LinkedIn brief from approved plan — format mix, optimization change from last week]
+Brand: [from state file]
+Executive name for personal brand post: [from state file]
+Audience: [ICP from state file]
+
+Deliver:
+1. Document carousel (10 slides, native PDF format) — optimized for saves
+2. 3 company page posts for the week (insight / social proof / educational)
+3. 1 executive personal brand post (first-person, text-only)
+4. LinkedIn article if this topic has SEO potential (flag if not worth it)
+5. Posting schedule with optimal days/times for B2B audience
+```
 
 **Twitter Engager**:
 ```
@@ -279,9 +296,14 @@ Deliver: 3 subreddit plans + post titles + comment seeding strategy.
 **4d — Publishing Calendar** (Social Media Strategist, after all 4c outputs)
 ```
 Activate Social Media Strategist.
-Platform packages: [paste all 4c outputs]
+Platform packages: [paste all 4c outputs — LinkedIn, Twitter, Instagram, TikTok, Reddit]
 Proposed schedule: [from approved plan]
 Brand: [from state file]
+
+Note: LinkedIn is the primary B2B channel — give it the best time slots
+(Tue–Thu, 8–10am). Sequence LinkedIn document carousel and Twitter thread
+so they amplify each other (same topic, different formats, 24–48h apart).
+
 Deliver: Final coordinated publishing calendar + engagement monitoring priorities
 + pinned response templates + publishing checklist.
 ```
@@ -302,6 +324,10 @@ After the full publishing window closes, collect metrics from each platform and 
 | Blog | Organic sessions (MTD) | [B] | [T] | [A] | +/-X% | +/-X% |
 | Blog | Avg time on page | [B] | [T] | [A] | +/-X% | +/-X% |
 | Blog | Keyword ranking | [B] | [T] | [A] | — | — |
+| LinkedIn | Carousel saves | [B] | [T] | [A] | +/-X% | +/-X% |
+| LinkedIn | Post engagement rate | [B] | [T] | [A] | +/-X% | +/-X% |
+| LinkedIn | Article views | [B] | [T] | [A] | +/-X% | +/-X% |
+| LinkedIn | Follower growth | [B] | [T] | [A] | +/-X% | +/-X% |
 | Twitter | Engagement rate | [B] | [T] | [A] | +/-X% | +/-X% |
 | Twitter | Thread retweets | [B] | [T] | [A] | +/-X% | +/-X% |
 | Instagram | Save rate | [B] | [T] | [A] | +/-X% | +/-X% |
@@ -330,6 +356,10 @@ After the full publishing window closes, collect metrics from each platform and 
 | Piece | Platform | URL | Status |
 |-------|----------|-----|--------|
 | [Pillar post title] | Blog | [URL] | Live |
+| Carousel: [topic] | LinkedIn | [URL] | Live |
+| Article: [topic] | LinkedIn | [URL] | Live |
+| 3x company posts | LinkedIn | [URLs] | Live |
+| Executive post | LinkedIn | [URL] | Live |
 | Thread: [topic] | Twitter | [URL] | Live |
 | Carousel: [topic] | Instagram | [URL] | Live |
 | [Video title] | TikTok | [URL] | Live |

@@ -164,7 +164,25 @@ Deliver the optimized draft with a change summary.
 ### Phase 5: Platform Adaptation (Days 8-10)
 Run all platform adaptations in **parallel** after core content is approved:
 
-**5a — Twitter Engager**
+**5a — LinkedIn Authority Builder**
+```
+Activate LinkedIn Authority Builder.
+
+Source content: [paste optimized article]
+Brand: [name] — [description]
+Executive name for personal brand post: [name + title]
+Audience: [B2B persona]
+Brand voice: [description]
+
+Create LinkedIn content package:
+1. Document carousel (10 slides, native PDF format) — optimized for saves
+2. 3 company page posts for the week (insight / social proof / educational mix)
+3. 1 executive personal brand post (first-person, text-only)
+4. LinkedIn article if topic has SEO potential (flag if not warranted)
+5. Posting schedule with optimal days/times (Tue–Thu, 8–10am)
+```
+
+**5b — Twitter Engager**
 ```
 Activate Twitter Engager.
 
@@ -180,7 +198,7 @@ Create Twitter content package:
 5. Best posting times recommendation for this content type
 ```
 
-**5b — Instagram Curator**
+**5c — Instagram Curator**
 ```
 Activate Instagram Curator.
 
@@ -196,7 +214,7 @@ Create Instagram content package:
 5. Visual direction notes for each asset
 ```
 
-**5c — TikTok Strategist**
+**5d — TikTok Strategist**
 ```
 Activate TikTok Strategist.
 
@@ -212,7 +230,7 @@ Create TikTok content package:
 5. Duet/stitch opportunity identification
 ```
 
-**5d — Reddit Community Builder**
+**5e — Reddit Community Builder**
 ```
 Activate Reddit Community Builder.
 
@@ -235,15 +253,20 @@ After all platform packages are created:
 Activate Social Media Strategist.
 
 Platform packages ready for publication:
-- Twitter: [paste 5a output summary]
-- Instagram: [paste 5b output summary]
-- TikTok: [paste 5c output summary]
-- Reddit: [paste 5d output summary]
+- LinkedIn: [paste 5a output summary]
+- Twitter: [paste 5b output summary]
+- Instagram: [paste 5c output summary]
+- TikTok: [paste 5d output summary]
+- Reddit: [paste 5e output summary]
 - Core article: [URL or CMS status]
+
+Note: LinkedIn is the primary B2B channel — prioritize best time slots
+(Tue–Thu, 8–10am). Sequence LinkedIn document carousel and Twitter thread
+on the same topic 24–48h apart for cross-platform amplification.
 
 Create the coordinated publishing schedule:
 1. Cross-platform timing calendar (avoid cannibalization, maximize amplification)
-2. Cross-promotion sequence (e.g., "Twitter thread → Instagram carousel → article")
+2. Cross-promotion sequence (e.g., "LinkedIn carousel → Twitter thread → article")
 3. Engagement monitoring priorities for first 48 hours per platform
 4. Pinned response templates for expected questions/comments
 5. Distribution checklist with owner and deadline per item
@@ -275,11 +298,11 @@ This analysis becomes the brief input for Phase 1 of the next cycle.
 
 ### Weekly Content Package
 - 1 pillar blog post / long-form asset (SEO-optimized, 1,500–3,000 words)
+- LinkedIn document carousel (10 slides, native PDF) + 3 company page posts + 1 executive personal brand post + LinkedIn article (if SEO warranted)
 - 1 Twitter thread (10-15 tweets) + 5 standalone tweets
 - 1 Instagram carousel (8-10 slides) + 1 Reel concept
 - 1-2 TikTok video concepts (scripted)
 - 1 Reddit value post + community engagement plan
-- 1 LinkedIn article summary or native post
 - Publishing calendar with cross-promotion sequences
 
 ### Monthly Editorial Calendar
@@ -304,7 +327,7 @@ This analysis becomes the brief input for Phase 1 of the next cycle.
 
 ### When to Run in Parallel
 - SEO research + audience intelligence (Phase 1)
-- All platform adaptations (Phase 5) — these are independent once core content is approved
+- All platform adaptations (Phase 5) — LinkedIn, Twitter, Instagram, TikTok, Reddit are independent once core content is approved
 - Editorial calendar creation + brand voice audit
 
 ### When to Run Sequentially
