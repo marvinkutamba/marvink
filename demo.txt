@@ -1,1 +1,3 @@
 branch file
+extra line
+new line added for diff demo
