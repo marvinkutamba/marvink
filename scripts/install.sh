@@ -15,6 +15,7 @@
 #   antigravity  -- Copy skills to ~/.gemini/antigravity/skills/
 #   gemini-cli   -- Install extension to ~/.gemini/extensions/agency-agents/
 #   opencode     -- Copy agents to .opencode/agent/ in current directory
+#   openclaw     -- Create OpenClaw agent workspaces in ~/.openclaw/
 #   cursor       -- Copy rules to .cursor/rules/ in current directory
 #   aider        -- Copy CONVENTIONS.md to current directory
 #   windsurf     -- Copy .windsurfrules to current directory
@@ -80,7 +81,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 INTEGRATIONS="$REPO_ROOT/integrations"
 
-ALL_TOOLS=(claude-code copilot antigravity gemini-cli opencode cursor aider windsurf)
+ALL_TOOLS=(claude-code copilot antigravity gemini-cli opencode openclaw cursor aider windsurf)
 
 # ---------------------------------------------------------------------------
 # Usage
@@ -109,6 +110,7 @@ detect_antigravity()  { [[ -d "${HOME}/.gemini/antigravity/skills" ]]; }
 detect_gemini_cli()   { command -v gemini >/dev/null 2>&1 || [[ -d "${HOME}/.gemini" ]]; }
 detect_cursor()       { command -v cursor >/dev/null 2>&1 || [[ -d "${HOME}/.cursor" ]]; }
 detect_opencode()     { command -v opencode >/dev/null 2>&1 || [[ -d "${HOME}/.config/opencode" ]]; }
+detect_openclaw()     { command -v openclaw >/dev/null 2>&1 || [[ -d "${HOME}/.openclaw" ]]; }
 detect_aider()        { command -v aider >/dev/null 2>&1; }
 detect_windsurf()     { command -v windsurf >/dev/null 2>&1 || [[ -d "${HOME}/.codeium" ]]; }
 
@@ -119,6 +121,7 @@ is_detected() {
     antigravity) detect_antigravity ;;
     gemini-cli)  detect_gemini_cli  ;;
     opencode)    detect_opencode    ;;
+    openclaw)    detect_openclaw    ;;
     cursor)      detect_cursor      ;;
     aider)       detect_aider       ;;
     windsurf)    detect_windsurf    ;;
@@ -134,6 +137,7 @@ tool_label() {
     antigravity) printf "%-14s  %s" "Antigravity"  "(~/.gemini/antigravity)" ;;
     gemini-cli)  printf "%-14s  %s" "Gemini CLI"   "(gemini extension)"      ;;
     opencode)    printf "%-14s  %s" "OpenCode"     "(opencode.ai)"           ;;
+    openclaw)    printf "%-14s  %s" "OpenClaw"     "(~/.openclaw/workspace)" ;;
     cursor)      printf "%-14s  %s" "Cursor"       "(.cursor/rules)"         ;;
     aider)       printf "%-14s  %s" "Aider"        "(CONVENTIONS.md)"        ;;
     windsurf)    printf "%-14s  %s" "Windsurf"     "(.windsurfrules)"        ;;
@@ -192,7 +196,7 @@ interactive_select() {
     # --- controls ---
     printf "\n"
     printf "  ------------------------------------------------\n"
-    printf "  ${C_CYAN}[1-8]${C_RESET} toggle   ${C_CYAN}[a]${C_RESET} all   ${C_CYAN}[n]${C_RESET} none   ${C_CYAN}[d]${C_RESET} detected\n"
+    printf "  ${C_CYAN}[1-9]${C_RESET} toggle   ${C_CYAN}[a]${C_RESET} all   ${C_CYAN}[n]${C_RESET} none   ${C_CYAN}[d]${C_RESET} detected\n"
     printf "  ${C_GREEN}[Enter]${C_RESET} install   ${C_RED}[q]${C_RESET} quit\n"
     printf "\n"
     printf "  >> "
@@ -341,6 +345,31 @@ install_opencode() {
   warn "OpenCode: project-scoped. Run from your project root to install there."
 }
 
+install_openclaw() {
+  local src="$INTEGRATIONS/openclaw"
+  local ws_base="${HOME}/.openclaw"
+  local count=0
+  [[ -d "$src" ]] || { err "integrations/openclaw missing. Run convert.sh first."; return 1; }
+  [[ -d "$ws_base" ]] || { err "OpenClaw not installed (~/.openclaw not found)."; return 1; }
+
+  # Copy agent SOUL.md + AGENTS.md into a shared skills-like directory
+  # that users can reference when creating agents via 'openclaw agents add'
+  local dest="$ws_base/agency-agents"
+  mkdir -p "$dest"
+  local d
+  while IFS= read -r -d '' d; do
+    local name; name="$(basename "$d")"
+    mkdir -p "$dest/$name"
+    cp "$d/SOUL.md" "$dest/$name/SOUL.md"
+    cp "$d/AGENTS.md" "$dest/$name/AGENTS.md"
+    (( count++ )) || true
+  done < <(find "$src" -mindepth 1 -maxdepth 1 -type d -print0)
+  ok "OpenClaw: $count agents -> $dest"
+  dim "  To use an agent: cp $dest/<agent>/SOUL.md ~/.openclaw/workspace/SOUL.md"
+  dim "  Or create a dedicated agent: openclaw agents add <name>"
+  dim "  Then copy SOUL.md + AGENTS.md into its workspace."
+}
+
 install_cursor() {
   local src="$INTEGRATIONS/cursor/rules"
   local dest="${PWD}/.cursor/rules"
@@ -388,6 +417,7 @@ install_tool() {
     antigravity) install_antigravity ;;
     gemini-cli)  install_gemini_cli  ;;
     opencode)    install_opencode    ;;
+    openclaw)    install_openclaw    ;;
     cursor)      install_cursor      ;;
     aider)       install_aider       ;;
     windsurf)    install_windsurf    ;;

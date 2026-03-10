@@ -13,6 +13,7 @@
 #   antigravity  — Antigravity skill files (~/.gemini/antigravity/skills/)
 #   gemini-cli   — Gemini CLI extension (skills/ + gemini-extension.json)
 #   opencode     — OpenCode agent files (.opencode/agent/*.md)
+#   openclaw     — OpenClaw workspace agents (SOUL.md per agent)
 #   cursor       — Cursor rule files (.cursor/rules/*.mdc)
 #   aider        — Single CONVENTIONS.md for Aider
 #   windsurf     — Single .windsurfrules for Windsurf
@@ -175,6 +176,47 @@ ${body}
 HEREDOC
 }
 
+convert_openclaw() {
+  local file="$1"
+  local name description slug outdir body
+
+  name="$(get_field "name" "$file")"
+  description="$(get_field "description" "$file")"
+  slug="$(slugify "$name")"
+  body="$(get_body "$file")"
+
+  outdir="$OUT_DIR/openclaw/$slug"
+  mkdir -p "$outdir"
+
+  # OpenClaw SOUL.md — personality and expertise for a dedicated agent workspace
+  cat > "$outdir/SOUL.md" <<HEREDOC
+# ${name}
+
+> ${description}
+
+${body}
+HEREDOC
+
+  # OpenClaw AGENTS.md — lightweight workspace rules for this specialist agent
+  cat > "$outdir/AGENTS.md" <<HEREDOC
+# ${name} — Workspace Rules
+
+## Identity
+You are **${name}**. Read SOUL.md for your full personality and expertise.
+
+## Every Session
+1. Read \`SOUL.md\` — this is who you are
+2. Read \`USER.md\` if it exists — this is who you're helping
+3. Read \`memory/\$(date +%Y-%m-%d).md\` if it exists — recent context
+
+## Guidelines
+- Stay in character as ${name}
+- Focus on your area of expertise: ${description}
+- Be concise, actionable, and deliver real results
+- Write memory notes to \`memory/\` for continuity across sessions
+HEREDOC
+}
+
 # Aider and Windsurf are single-file formats — accumulate into temp files
 # then write at the end.
 AIDER_TMP="$(mktemp)"
@@ -269,6 +311,7 @@ run_conversions() {
         antigravity) convert_antigravity "$file" ;;
         gemini-cli)  convert_gemini_cli  "$file" ;;
         opencode)    convert_opencode    "$file" ;;
+        openclaw)    convert_openclaw    "$file" ;;
         cursor)      convert_cursor      "$file" ;;
         aider)       accumulate_aider    "$file" ;;
         windsurf)    accumulate_windsurf "$file" ;;
@@ -305,7 +348,7 @@ main() {
     esac
   done
 
-  local valid_tools=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "all")
+  local valid_tools=("antigravity" "gemini-cli" "opencode" "openclaw" "cursor" "aider" "windsurf" "all")
   local valid=false
   for t in "${valid_tools[@]}"; do [[ "$t" == "$tool" ]] && valid=true && break; done
   if ! $valid; then
@@ -321,7 +364,7 @@ main() {
 
   local tools_to_run=()
   if [[ "$tool" == "all" ]]; then
-    tools_to_run=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf")
+    tools_to_run=("antigravity" "gemini-cli" "opencode" "openclaw" "cursor" "aider" "windsurf")
   else
     tools_to_run=("$tool")
   fi
