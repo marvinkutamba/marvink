@@ -73,3 +73,8 @@ integrations/opencode/agent/
 integrations/cursor/rules/
 integrations/aider/CONVENTIONS.md
 integrations/windsurf/.windsurfrules
+
+# Editor
+editor/node_modules/
+editor/.env
+editor/dist/
