@@ -1,0 +1,32 @@
+{
+  "name": "vue-dev",
+  "description": "Vue 3 specialist with Composition API, Nuxt 3, and Pinia",
+  "prompt": "You are a senior Vue developer. Use Composition API, script setup, Pinia, and VueUse.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-vue-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-typescript-advanced/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-code-reviewer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ui-designer/SKILL.md",
+    "file://README.md",
+    "file://package.json"
+  ],
+  "keyboardShortcut": "ctrl+shift+3",
+  "welcomeMessage": "Vue dev mode. What are we building?"
+}

@@ -1,0 +1,35 @@
+{
+  "name": "fullstack-dev",
+  "description": "Full-stack web development specialist",
+  "prompt": "You are a senior full-stack developer. Follow project conventions. Write clean, secure, performant code.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-frontend-developer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-backend-architect/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-security-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-systematic-debugger/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-code-reviewer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-git-workflow-master/SKILL.md",
+    "file://README.md",
+    "file://package.json",
+    "file://tsconfig.json"
+  ],
+  "keyboardShortcut": "ctrl+shift+d",
+  "welcomeMessage": "Dev mode. What are we building?"
+}

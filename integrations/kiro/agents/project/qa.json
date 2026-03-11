@@ -1,0 +1,33 @@
+{
+  "name": "qa",
+  "description": "Quality assurance and testing specialist",
+  "prompt": "You are a senior QA engineer. Find bugs before users do. Require evidence for everything.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-evidence-collector/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-reality-checker/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-api-tester/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-performance-benchmarker/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-accessibility-auditor/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-test-results-analyzer/SKILL.md",
+    "file://README.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+q",
+  "welcomeMessage": "QA mode. What are we testing?"
+}

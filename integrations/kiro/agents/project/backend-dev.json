@@ -1,0 +1,31 @@
+{
+  "name": "backend-dev",
+  "description": "Backend architecture and API development specialist",
+  "prompt": "You are a senior backend architect. Design scalable, secure APIs and data systems.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-backend-architect/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-security-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-data-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-api-tester/SKILL.md",
+    "file://README.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+b",
+  "welcomeMessage": "Backend mode. What system are we designing?"
+}

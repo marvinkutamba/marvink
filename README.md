@@ -58,6 +58,7 @@ Browse the agents below and copy/adapt the ones you need!
 ./scripts/install.sh --tool copilot
 ./scripts/install.sh --tool aider
 ./scripts/install.sh --tool windsurf
+./scripts/install.sh --tool kiro
 ```
 
 See the [Multi-Tool Integrations](#-multi-tool-integrations) section below for full details.
@@ -136,6 +137,17 @@ Building the right thing at the right time.
 | 🎯 [Sprint Prioritizer](product/product-sprint-prioritizer.md) | Agile planning, feature prioritization | Sprint planning, resource allocation, backlog management |
 | 🔍 [Trend Researcher](product/product-trend-researcher.md) | Market intelligence, competitive analysis | Market research, opportunity assessment, trend identification |
 | 💬 [Feedback Synthesizer](product/product-feedback-synthesizer.md) | User feedback analysis, insights extraction | Feedback analysis, user insights, product priorities |
+
+### 💼 Sales & Revenue Division
+
+Turning prospects into partners and pipeline into predictable revenue.
+
+| Agent | Specialty | When to Use |
+|-------|-----------|-------------|
+| 🎯 [Sales Engineer](sales-revenue/sales-revenue-sales-engineer.md) | Technical pre-sales, demos, POCs, RFP responses | Enterprise deal support, technical evaluations, solution architecture |
+| 📈 [Revenue Operations Analyst](sales-revenue/sales-revenue-revops-analyst.md) | CRM optimization, forecasting, pipeline analytics | Revenue forecasting, CRM hygiene, cross-functional alignment |
+| 🤝 [Customer Success Manager](sales-revenue/sales-revenue-customer-success.md) | Adoption, retention, expansion, health scoring | Post-sale engagement, churn prevention, account growth |
+| 💼 [Account Strategist](sales-revenue/sales-revenue-account-strategist.md) | Deal strategy, stakeholder mapping, competitive positioning | Complex enterprise sales cycles, high-value deal orchestration |
 
 ### 🎬 Project Management Division
 
@@ -419,6 +431,7 @@ The Agency works natively with Claude Code, and ships conversion + install scrip
 
 - **[Claude Code](https://claude.ai/code)** — native `.md` agents, no conversion needed → `~/.claude/agents/`
 - **[Github Copilot](https://github.com/copilot)** — native `.md` agents, no conversion needed → `~/.github/agents/`
+- **[Kiro CLI](https://kiro.dev)** — `SKILL.md` per agent + role-based agent JSON → `~/.kiro/skills-library/` + `~/.kiro/agents/`
 - **[Antigravity](https://github.com/google-gemini/antigravity)** — `SKILL.md` per agent → `~/.gemini/antigravity/skills/`
 - **[Gemini CLI](https://github.com/google-gemini/gemini-cli)** — extension + `SKILL.md` files → `~/.gemini/extensions/agency-agents/`
 - **[OpenCode](https://opencode.ai)** — `.md` agent files → `.opencode/agents/`
@@ -511,6 +524,31 @@ Use the Frontend Developer agent to review this component.
 ```
 
 See [integrations/github-copilot/README.md](integrations/github-copilot/README.md) for details.
+</details>
+
+<details>
+<summary><strong>Kiro CLI</strong></summary>
+
+Each agent becomes a skill in `~/.kiro/skills-library/`, and role-based agents are generated from `profiles.yaml`. Agents use `skill://` URIs for progressive loading — only metadata at startup, full content on demand. Saves ~95% token overhead vs loading all skills globally.
+
+```bash
+./scripts/install.sh --tool kiro
+```
+
+Then bootstrap a project with role-specific agents:
+```bash
+./integrations/kiro/setup-project.sh
+# Or non-interactive:
+./integrations/kiro/setup-project.sh fullstack-dev qa
+```
+
+Switch agents in Kiro CLI:
+```
+/agent swap fullstack-dev
+/agent swap researcher
+```
+
+See [integrations/kiro/README.md](integrations/kiro/README.md) for architecture details and profile customization.
 </details>
 
 <details>

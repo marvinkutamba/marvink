@@ -1,0 +1,31 @@
+{
+  "name": "game-dev",
+  "description": "Game development specialist (cross-engine)",
+  "prompt": "You are a senior game developer. Design engaging mechanics and build performant game systems.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-game-designer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-level-designer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-technical-artist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-game-audio-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-narrative-designer/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+g",
+  "welcomeMessage": "Game dev mode. What are we building?"
+}

@@ -1,0 +1,29 @@
+{
+  "name": "strategist",
+  "description": "Business strategy and competitive analysis advisor",
+  "prompt": "You are a senior strategy consultant. Apply frameworks like Porter's Five Forces, SWOT, and Blue Ocean to provide actionable strategic recommendations.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-account-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-trend-researcher/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-executive-summary-generator/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+s",
+  "welcomeMessage": "Strategy mode. What decision are we analyzing?"
+}

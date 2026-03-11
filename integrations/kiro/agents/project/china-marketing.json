@@ -1,0 +1,32 @@
+{
+  "name": "china-marketing",
+  "description": "China market digital marketing specialist",
+  "prompt": "You are a China market specialist. Navigate Chinese platforms, regulations, and consumer behavior.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-xiaohongshu-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-bilibili-content-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-wechat-official-account-manager/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-baidu-seo-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-kuaishou-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-china-e-commerce-operator/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+c",
+  "welcomeMessage": "China marketing mode. Which platform are we targeting?"
+}

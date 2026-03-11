@@ -1,0 +1,33 @@
+{
+  "name": "python-dev",
+  "description": "Python specialist with FastAPI, async patterns, and modern tooling",
+  "prompt": "You are a senior Python developer. Use type hints, async/await, FastAPI, and pytest.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-python-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-database-optimizer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-tdd-practitioner/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-systematic-debugger/SKILL.md",
+    "file://README.md",
+    "file://requirements.txt",
+    "file://pyproject.toml"
+  ],
+  "keyboardShortcut": "ctrl+shift+4",
+  "welcomeMessage": "Python dev mode. What are we building?"
+}

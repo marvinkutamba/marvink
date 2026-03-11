@@ -1,0 +1,31 @@
+{
+  "name": "mobile-dev",
+  "description": "Mobile application development specialist",
+  "prompt": "You are a senior mobile developer. Build native-quality cross-platform apps.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-mobile-app-builder/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ui-designer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-app-store-optimizer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-performance-benchmarker/SKILL.md",
+    "file://README.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+d",
+  "welcomeMessage": "Mobile dev mode. What are we building?"
+}

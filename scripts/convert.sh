@@ -17,6 +17,7 @@
 #   aider        — Single CONVENTIONS.md for Aider
 #   windsurf     — Single .windsurfrules for Windsurf
 #   openclaw     — OpenClaw SOUL.md files (openclaw_workspace/<agent>/SOUL.md)
+#   kiro         — Kiro CLI SKILL.md + agent JSON (~/.kiro/skills-library/ + agents/)
 #   all          — All tools (default)
 #
 # Output is written to integrations/<tool>/ relative to the repo root.
@@ -44,7 +45,7 @@ TODAY="$(date +%Y-%m-%d)"
 
 AGENT_DIRS=(
   design engineering game-development marketing paid-media product project-management
-  testing support spatial-computing specialized
+  sales-revenue testing support spatial-computing specialized
 )
 
 # --- Usage ---
@@ -291,6 +292,75 @@ HEREDOC
   fi
 }
 
+convert_kiro() {
+  local file="$1"
+  local name description slug outdir outfile body
+
+  name="$(get_field "name" "$file")"
+  description="$(get_field "description" "$file")"
+  slug="agency-$(slugify "$name")"
+  body="$(get_body "$file")"
+
+  outdir="$OUT_DIR/kiro/skills-library/$slug"
+  outfile="$outdir/SKILL.md"
+  mkdir -p "$outdir"
+
+  cat > "$outfile" <<HEREDOC
+---
+name: ${slug}
+description: ${description}
+---
+${body}
+HEREDOC
+}
+
+# Generate Kiro agent JSON configs from profiles.yaml
+generate_kiro_agents() {
+  local profiles="$REPO_ROOT/integrations/kiro/profiles.yaml"
+  [[ -f "$profiles" ]] || { warn "profiles.yaml not found, skipping agent generation"; return; }
+
+  local agents_dir="$OUT_DIR/kiro/agents"
+  mkdir -p "$agents_dir"
+
+  # Parse profiles.yaml and generate agent JSON for each profile
+  python3 - "$profiles" "$agents_dir" "$OUT_DIR/kiro/skills-library" <<'PYEOF'
+import sys, yaml, json, os
+
+profiles_path, agents_dir, skills_lib = sys.argv[1], sys.argv[2], sys.argv[3]
+with open(profiles_path) as f:
+    data = yaml.safe_load(f)
+
+for key, p in data.get("profiles", {}).items():
+    resources = []
+    for s in p.get("skills", []):
+        slug = "agency-" + s.split("/")[-1]
+        resources.append(f"skill://~/.kiro/skills-library/{slug}/SKILL.md")
+    for r in p.get("resources", []):
+        resources.append(r)
+
+    agent = {
+        "name": key,
+        "description": p["description"],
+        "prompt": p["prompt"],
+        "tools": ["fs_read", "fs_write", "execute_bash", "grep", "glob", "code", "thinking", "todo_list", "knowledge"],
+        "allowedTools": ["fs_read", "grep", "glob", "code"],
+        "resources": resources,
+    }
+    if p.get("shortcut"):
+        agent["keyboardShortcut"] = p["shortcut"]
+    if p.get("welcome"):
+        agent["welcomeMessage"] = p["welcome"]
+
+    scope_dir = os.path.join(agents_dir, "global" if p.get("scope") == "global" else "project")
+    os.makedirs(scope_dir, exist_ok=True)
+    with open(os.path.join(scope_dir, f"{key}.json"), "w") as out:
+        json.dump(agent, out, indent=2, ensure_ascii=False)
+        out.write("\n")
+
+print(f"Generated {len(data.get('profiles', {}))} agent configs")
+PYEOF
+}
+
 # Aider and Windsurf are single-file formats — accumulate into temp files
 # then write at the end.
 AIDER_TMP="$(mktemp)"
@@ -387,6 +457,7 @@ run_conversions() {
         opencode)    convert_opencode    "$file" ;;
         cursor)      convert_cursor      "$file" ;;
         openclaw)    convert_openclaw    "$file" ;;
+        kiro)        convert_kiro        "$file" ;;
         aider)       accumulate_aider    "$file" ;;
         windsurf)    accumulate_windsurf "$file" ;;
       esac
@@ -422,7 +493,7 @@ main() {
     esac
   done
 
-  local valid_tools=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "openclaw" "all")
+  local valid_tools=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "openclaw" "kiro" "all")
   local valid=false
   for t in "${valid_tools[@]}"; do [[ "$t" == "$tool" ]] && valid=true && break; done
   if ! $valid; then
@@ -438,7 +509,7 @@ main() {
 
   local tools_to_run=()
   if [[ "$tool" == "all" ]]; then
-    tools_to_run=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "openclaw")
+    tools_to_run=("antigravity" "gemini-cli" "opencode" "cursor" "aider" "windsurf" "openclaw" "kiro")
   else
     tools_to_run=("$tool")
   fi
@@ -460,6 +531,12 @@ main() {
 }
 HEREDOC
       info "Wrote gemini-extension.json"
+    fi
+
+    # Kiro also needs agent JSON configs from profiles
+    if [[ "$t" == "kiro" ]]; then
+      generate_kiro_agents
+      info "Generated Kiro agent configs from profiles.yaml"
     fi
 
     info "Converted $count agents for $t"

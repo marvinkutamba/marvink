@@ -1,0 +1,336 @@
+# Kiro CLI Agent Profiles
+#
+# Each profile defines a Kiro agent with its own skill set.
+# Skills reference agent slugs from the agency-agents repo.
+# Used by convert.sh to generate agent JSON + SKILL.md files,
+# and by setup-project.sh to bootstrap project .kiro/ directories.
+#
+# Scope:
+#   global  — installed to ~/.kiro/agents/ (available everywhere)
+#   project — template for <project>/.kiro/agents/ (tech-stack specific)
+
+profiles:
+
+  # ── Global agents (universal, not tech-stack dependent) ──────────
+
+  orchestrator:
+    scope: global
+    description: "Multi-agent coordinator for complex cross-functional projects"
+    prompt: "You are a senior orchestrator. Coordinate multiple specialist perspectives to deliver comprehensive solutions."
+    shortcut: "ctrl+shift+o"
+    welcome: "Orchestrator mode. Describe the mission and I'll coordinate the right specialists."
+    skills:
+      - specialized/agents-orchestrator
+      - project-management/studio-producer
+
+  researcher:
+    scope: global
+    description: "Deep research agent for market analysis, competitive intel, and trend identification"
+    prompt: "You are a research specialist. Gather, analyze, and synthesize information from multiple sources into actionable insights."
+    shortcut: "ctrl+shift+r"
+    welcome: "Research mode. What do you need investigated?"
+    skills:
+      - product/trend-researcher
+      - support/analytics-reporter
+      - support/executive-summary-generator
+
+  strategist:
+    scope: global
+    description: "Business strategy and competitive analysis advisor"
+    prompt: "You are a senior strategy consultant. Apply frameworks like Porter's Five Forces, SWOT, and Blue Ocean to provide actionable strategic recommendations."
+    shortcut: "ctrl+shift+s"
+    welcome: "Strategy mode. What decision are we analyzing?"
+    skills:
+      - sales-revenue/account-strategist
+      - product/trend-researcher
+      - support/executive-summary-generator
+
+  writer:
+    scope: global
+    description: "Technical and business writing specialist"
+    prompt: "You are an expert writer. Produce clear, well-structured documents — from technical docs to executive summaries."
+    shortcut: "ctrl+shift+w"
+    welcome: "Writer mode. What are we writing?"
+    skills:
+      - engineering/technical-writer
+      - marketing/content-creator
+      - support/executive-summary-generator
+
+  # ── Project agents (tech-stack specific, installed per project) ──
+
+  fullstack-dev:
+    scope: project
+    description: "Full-stack web development specialist"
+    prompt: "You are a senior full-stack developer. Follow project conventions. Write clean, secure, performant code."
+    shortcut: "ctrl+shift+d"
+    welcome: "Dev mode. What are we building?"
+    skills:
+      - engineering/frontend-developer
+      - engineering/backend-architect
+      - engineering/security-engineer
+      - engineering/systematic-debugger
+      - engineering/code-reviewer
+      - engineering/git-workflow-master
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+      - "file://tsconfig.json"
+
+  frontend-dev:
+    scope: project
+    description: "Frontend and UI development specialist"
+    prompt: "You are a senior frontend developer. Build responsive, accessible, performant UIs."
+    shortcut: "ctrl+shift+f"
+    welcome: "Frontend mode. What component are we working on?"
+    skills:
+      - engineering/frontend-developer
+      - design/ui-designer
+      - design/ux-architect
+      - testing/accessibility-auditor
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+
+  backend-dev:
+    scope: project
+    description: "Backend architecture and API development specialist"
+    prompt: "You are a senior backend architect. Design scalable, secure APIs and data systems."
+    shortcut: "ctrl+shift+b"
+    welcome: "Backend mode. What system are we designing?"
+    skills:
+      - engineering/backend-architect
+      - engineering/security-engineer
+      - engineering/data-engineer
+      - testing/api-tester
+    resources:
+      - "file://README.md"
+
+  ai-ml-dev:
+    scope: project
+    description: "AI/ML engineering specialist"
+    prompt: "You are an AI engineer. Build production ML systems with focus on reliability and performance."
+    shortcut: "ctrl+shift+a"
+    welcome: "AI dev mode. What model or pipeline are we working on?"
+    skills:
+      - engineering/ai-engineer
+      - engineering/backend-architect
+      - engineering/data-engineer
+      - specialized/model-qa-specialist
+    resources:
+      - "file://README.md"
+      - "file://requirements.txt"
+
+  devops:
+    scope: project
+    description: "DevOps and infrastructure automation specialist"
+    prompt: "You are a senior DevOps engineer. Automate everything, monitor everything, secure everything."
+    shortcut: "ctrl+shift+i"
+    welcome: "DevOps mode. What infrastructure are we managing?"
+    skills:
+      - engineering/devops-automator
+      - engineering/security-engineer
+      - support/infrastructure-maintainer
+      - engineering/incident-response-commander
+    resources:
+      - "file://README.md"
+
+  mobile-dev:
+    scope: project
+    description: "Mobile application development specialist"
+    prompt: "You are a senior mobile developer. Build native-quality cross-platform apps."
+    shortcut: "ctrl+shift+d"
+    welcome: "Mobile dev mode. What are we building?"
+    skills:
+      - engineering/mobile-app-builder
+      - design/ui-designer
+      - marketing/app-store-optimizer
+      - testing/performance-benchmarker
+    resources:
+      - "file://README.md"
+
+  marketing:
+    scope: project
+    description: "Digital marketing and growth specialist"
+    prompt: "You are a senior digital marketer. Drive growth through data-driven multi-channel strategies."
+    shortcut: "ctrl+shift+m"
+    welcome: "Marketing mode. What campaign are we running?"
+    skills:
+      - marketing/growth-hacker
+      - marketing/content-creator
+      - marketing/seo-specialist
+      - marketing/social-media-strategist
+      - marketing/tiktok-strategist
+
+  china-marketing:
+    scope: project
+    description: "China market digital marketing specialist"
+    prompt: "You are a China market specialist. Navigate Chinese platforms, regulations, and consumer behavior."
+    shortcut: "ctrl+shift+c"
+    welcome: "China marketing mode. Which platform are we targeting?"
+    skills:
+      - marketing/xiaohongshu-specialist
+      - marketing/bilibili-content-strategist
+      - marketing/wechat-official-account-manager
+      - marketing/baidu-seo-specialist
+      - marketing/kuaishou-strategist
+      - marketing/china-e-commerce-operator
+
+  paid-media:
+    scope: project
+    description: "Paid advertising and media buying specialist"
+    prompt: "You are a senior paid media strategist. Maximize ROAS across all ad platforms."
+    shortcut: "ctrl+shift+p"
+    welcome: "Paid media mode. Which account are we optimizing?"
+    skills:
+      - paid-media/ppc-campaign-strategist
+      - paid-media/ad-creative-strategist
+      - paid-media/search-query-analyst
+      - paid-media/paid-social-strategist
+      - paid-media/tracking-measurement-specialist
+      - paid-media/paid-media-auditor
+
+  qa:
+    scope: project
+    description: "Quality assurance and testing specialist"
+    prompt: "You are a senior QA engineer. Find bugs before users do. Require evidence for everything."
+    shortcut: "ctrl+shift+q"
+    welcome: "QA mode. What are we testing?"
+    skills:
+      - testing/evidence-collector
+      - testing/reality-checker
+      - testing/api-tester
+      - testing/performance-benchmarker
+      - testing/accessibility-auditor
+      - testing/test-results-analyzer
+    resources:
+      - "file://README.md"
+
+  pm:
+    scope: project
+    description: "Project management and delivery specialist"
+    prompt: "You are a senior project manager. Convert requirements to actionable tasks. Track progress relentlessly."
+    shortcut: "ctrl+shift+j"
+    welcome: "PM mode. What project are we managing?"
+    skills:
+      - project-management/senior-project-manager
+      - project-management/sprint-prioritizer
+      - project-management/project-shepherd
+      - product/feedback-synthesizer
+
+  design:
+    scope: project
+    description: "UI/UX design and brand specialist"
+    prompt: "You are a senior designer. Create beautiful, usable, accessible interfaces."
+    shortcut: "ctrl+shift+u"
+    welcome: "Design mode. What are we designing?"
+    skills:
+      - design/ui-designer
+      - design/ux-researcher
+      - design/ux-architect
+      - design/brand-guardian
+      - design/whimsy-injector
+
+  game-dev:
+    scope: project
+    description: "Game development specialist (cross-engine)"
+    prompt: "You are a senior game developer. Design engaging mechanics and build performant game systems."
+    shortcut: "ctrl+shift+g"
+    welcome: "Game dev mode. What are we building?"
+    skills:
+      - game-development/game-designer
+      - game-development/level-designer
+      - game-development/technical-artist
+      - game-development/game-audio-engineer
+      - game-development/narrative-designer
+
+  sales:
+    scope: project
+    description: "Sales engineering and revenue operations specialist"
+    prompt: "You are a senior sales strategist. Turn prospects into partners with data-driven deal strategy."
+    shortcut: "ctrl+shift+e"
+    welcome: "Sales mode. What deal are we working?"
+    skills:
+      - sales-revenue/sales-engineer
+      - sales-revenue/account-strategist
+      - sales-revenue/customer-success-manager
+      - sales-revenue/revenue-operations-analyst
+
+  security:
+    scope: project
+    description: "Application security and compliance specialist"
+    prompt: "You are a senior security engineer. Find vulnerabilities, enforce secure patterns, ensure compliance."
+    shortcut: "ctrl+shift+x"
+    welcome: "Security mode. What are we securing?"
+    skills:
+      - engineering/security-engineer
+      - engineering/threat-detection-engineer
+      - specialized/compliance-auditor
+      - support/legal-compliance-checker
+    resources:
+      - "file://README.md"
+
+  # ── Framework-specific dev profiles (from skills.sh top skills) ──
+
+  react-dev:
+    scope: project
+    description: "React specialist with modern patterns, hooks, and Server Components"
+    prompt: "You are a senior React developer. Use modern React 19+ patterns, Server Components, and hooks."
+    shortcut: "ctrl+shift+1"
+    welcome: "React dev mode. What component are we building?"
+    skills:
+      - engineering/react-specialist
+      - engineering/typescript-advanced
+      - engineering/code-reviewer
+      - engineering/tdd-practitioner
+      - design/ui-designer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+      - "file://tsconfig.json"
+
+  nextjs-dev:
+    scope: project
+    description: "Next.js specialist with App Router, Server Actions, and Vercel patterns"
+    prompt: "You are a senior Next.js developer. Use App Router, Server Components, and Server Actions."
+    shortcut: "ctrl+shift+2"
+    welcome: "Next.js dev mode. What are we building?"
+    skills:
+      - engineering/nextjs-specialist
+      - engineering/react-specialist
+      - engineering/typescript-advanced
+      - engineering/database-optimizer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+      - "file://next.config.*"
+
+  vue-dev:
+    scope: project
+    description: "Vue 3 specialist with Composition API, Nuxt 3, and Pinia"
+    prompt: "You are a senior Vue developer. Use Composition API, script setup, Pinia, and VueUse."
+    shortcut: "ctrl+shift+3"
+    welcome: "Vue dev mode. What are we building?"
+    skills:
+      - engineering/vue-specialist
+      - engineering/typescript-advanced
+      - engineering/code-reviewer
+      - design/ui-designer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+
+  python-dev:
+    scope: project
+    description: "Python specialist with FastAPI, async patterns, and modern tooling"
+    prompt: "You are a senior Python developer. Use type hints, async/await, FastAPI, and pytest."
+    shortcut: "ctrl+shift+4"
+    welcome: "Python dev mode. What are we building?"
+    skills:
+      - engineering/python-specialist
+      - engineering/database-optimizer
+      - engineering/tdd-practitioner
+      - engineering/systematic-debugger
+    resources:
+      - "file://README.md"
+      - "file://requirements.txt"
+      - "file://pyproject.toml"

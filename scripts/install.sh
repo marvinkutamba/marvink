@@ -19,6 +19,7 @@
 #   aider        -- Copy CONVENTIONS.md to current directory
 #   windsurf     -- Copy .windsurfrules to current directory
 #   openclaw     -- Copy workspaces to ~/.openclaw/agency-agents/
+#   kiro         -- Install skills-library + agents to ~/.kiro/
 #   all          -- Install for all detected tools (default)
 #
 # Flags:
@@ -81,7 +82,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 INTEGRATIONS="$REPO_ROOT/integrations"
 
-ALL_TOOLS=(claude-code copilot antigravity gemini-cli opencode openclaw cursor aider windsurf)
+ALL_TOOLS=(claude-code copilot antigravity gemini-cli opencode openclaw cursor aider windsurf kiro)
 
 # ---------------------------------------------------------------------------
 # Usage
@@ -113,6 +114,7 @@ detect_opencode()     { command -v opencode >/dev/null 2>&1 || [[ -d "${HOME}/.c
 detect_aider()        { command -v aider >/dev/null 2>&1; }
 detect_openclaw()     { command -v openclaw >/dev/null 2>&1 || [[ -d "${HOME}/.openclaw" ]]; }
 detect_windsurf()     { command -v windsurf >/dev/null 2>&1 || [[ -d "${HOME}/.codeium" ]]; }
+detect_kiro()         { command -v kiro-cli >/dev/null 2>&1 || [[ -d "${HOME}/.kiro" ]]; }
 
 is_detected() {
   case "$1" in
@@ -125,6 +127,7 @@ is_detected() {
     cursor)      detect_cursor      ;;
     aider)       detect_aider       ;;
     windsurf)    detect_windsurf    ;;
+    kiro)        detect_kiro        ;;
     *)           return 1 ;;
   esac
 }
@@ -141,6 +144,7 @@ tool_label() {
     cursor)      printf "%-14s  %s" "Cursor"       "(.cursor/rules)"         ;;
     aider)       printf "%-14s  %s" "Aider"        "(CONVENTIONS.md)"        ;;
     windsurf)    printf "%-14s  %s" "Windsurf"     "(.windsurfrules)"        ;;
+    kiro)        printf "%-14s  %s" "Kiro CLI"     "(~/.kiro/skills-library)" ;;
   esac
 }
 
@@ -268,7 +272,7 @@ install_claude_code() {
   mkdir -p "$dest"
   local dir f first_line
   for dir in design engineering game-development marketing paid-media product project-management \
-              testing support spatial-computing specialized; do
+              sales-revenue testing support spatial-computing specialized; do
     [[ -d "$REPO_ROOT/$dir" ]] || continue
     while IFS= read -r -d '' f; do
       first_line="$(head -1 "$f")"
@@ -286,7 +290,7 @@ install_copilot() {
   mkdir -p "$dest"
   local dir f first_line
   for dir in design engineering marketing product project-management \
-              testing support spatial-computing specialized; do
+              sales-revenue testing support spatial-computing specialized; do
     [[ -d "$REPO_ROOT/$dir" ]] || continue
     while IFS= read -r -d '' f; do
       first_line="$(head -1 "$f")"
@@ -410,6 +414,65 @@ install_windsurf() {
   warn "Windsurf: project-scoped. Run from your project root to install there."
 }
 
+install_kiro() {
+  local src="$INTEGRATIONS/kiro"
+  [[ -d "$src/skills-library" ]] || { err "integrations/kiro missing. Run convert.sh --tool kiro first."; return 1; }
+
+  local lib_dest="${HOME}/.kiro/skills-library"
+  local agents_dest="${HOME}/.kiro/agents"
+
+  # Migrate: move existing agency skills out of ~/.kiro/skills/ into library
+  if [[ -d "${HOME}/.kiro/skills" ]]; then
+    local migrated=0
+    local s
+    for s in "${HOME}"/.kiro/skills/agency-*/; do
+      [[ -d "$s" ]] || continue
+      local name; name="$(basename "$s")"
+      if [[ ! -L "$s" ]]; then
+        mkdir -p "$lib_dest"
+        mv "$s" "$lib_dest/$name" 2>/dev/null && (( migrated++ )) || true
+      fi
+    done
+    if (( migrated > 0 )); then
+      ok "Kiro: migrated $migrated existing skills to skills-library"
+    fi
+  fi
+
+  # Install skills library
+  local count=0
+  local d
+  while IFS= read -r -d '' d; do
+    local name; name="$(basename "$d")"
+    mkdir -p "$lib_dest/$name"
+    cp "$d/SKILL.md" "$lib_dest/$name/SKILL.md"
+    (( count++ )) || true
+  done < <(find "$src/skills-library" -mindepth 1 -maxdepth 1 -type d -print0)
+  ok "Kiro: $count skills -> $lib_dest"
+
+  # Install global agents
+  local agent_count=0
+  if [[ -d "$src/agents/global" ]]; then
+    mkdir -p "$agents_dest"
+    local f
+    for f in "$src"/agents/global/*.json; do
+      [[ -f "$f" ]] || continue
+      local name; name="$(basename "$f")"
+      # Don't overwrite user-customized agents
+      if [[ -f "$agents_dest/$name" ]]; then
+        warn "Kiro: $name already exists, skipping (delete to reinstall)"
+      else
+        cp "$f" "$agents_dest/$name"
+        (( agent_count++ )) || true
+      fi
+    done
+    ok "Kiro: $agent_count global agents -> $agents_dest"
+  fi
+
+  echo ""
+  dim "  Bootstrap a project:  ./integrations/kiro/setup-project.sh"
+  dim "  List profiles:        ./integrations/kiro/setup-project.sh --list"
+}
+
 install_tool() {
   case "$1" in
     claude-code) install_claude_code ;;
@@ -421,6 +484,7 @@ install_tool() {
     cursor)      install_cursor      ;;
     aider)       install_aider       ;;
     windsurf)    install_windsurf    ;;
+    kiro)        install_kiro        ;;
   esac
 }
 

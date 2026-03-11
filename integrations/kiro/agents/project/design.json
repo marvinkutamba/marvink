@@ -1,0 +1,31 @@
+{
+  "name": "design",
+  "description": "UI/UX design and brand specialist",
+  "prompt": "You are a senior designer. Create beautiful, usable, accessible interfaces.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-ui-designer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ux-researcher/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ux-architect/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-brand-guardian/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-whimsy-injector/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+u",
+  "welcomeMessage": "Design mode. What are we designing?"
+}
