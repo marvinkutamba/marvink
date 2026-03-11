@@ -12,6 +12,7 @@ compatible with popular agentic coding tools.
 - **[Cursor](#cursor)** — `.mdc` rule files in `cursor/`
 - **[Aider](#aider)** — `CONVENTIONS.md` in `aider/`
 - **[Windsurf](#windsurf)** — `.windsurfrules` in `windsurf/`
+- **[Kiro CLI](#kiro-cli)** — `SKILL.md` per agent in `kiro/`
 
 ## Quick Install
 
@@ -26,6 +27,7 @@ compatible with popular agentic coding tools.
 ./scripts/install.sh --tool aider
 ./scripts/install.sh --tool windsurf
 ./scripts/install.sh --tool claude-code
+./scripts/install.sh --tool kiro
 ```
 
 ## Regenerating Integration Files
@@ -115,3 +117,16 @@ cd /your/project && /path/to/agency-agents/scripts/install.sh --tool windsurf
 ```
 
 See [windsurf/README.md](windsurf/README.md) for details.
+
+---
+
+## Kiro CLI
+
+Each agent becomes a `SKILL.md` skill file installed to `~/.kiro/skills/`.
+Skills are prefixed with `agency-` to avoid naming conflicts.
+
+```bash
+./scripts/install.sh --tool kiro
+```
+
+See [kiro/README.md](kiro/README.md) for details.

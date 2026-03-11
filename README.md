@@ -44,7 +44,7 @@ Each agent file contains:
 
 Browse the agents below and copy/adapt the ones you need!
 
-### Option 3: Use with Other Tools (Cursor, Aider, Windsurf, Gemini CLI, OpenCode)
+### Option 3: Use with Other Tools (Cursor, Aider, Windsurf, Gemini CLI, OpenCode, Kiro CLI)
 
 ```bash
 # Step 1 -- generate integration files for all supported tools
@@ -426,6 +426,7 @@ The Agency works natively with Claude Code, and ships conversion + install scrip
 - **[Aider](https://aider.chat)** — single `CONVENTIONS.md` → `./CONVENTIONS.md`
 - **[Windsurf](https://codeium.com/windsurf)** — single `.windsurfrules` → `./.windsurfrules`
 - **[OpenClaw](https://openclaw.com)** — `SOUL.md` + `AGENTS.md` + `IDENTITY.md` per agent
+- **[Kiro CLI](https://kiro.dev/cli/)** — `SKILL.md` per agent → `~/.kiro/skills/`
 
 ---
 
@@ -618,6 +619,23 @@ Use the Reality Checker agent to verify this is production ready.
 ```
 
 See [integrations/windsurf/README.md](integrations/windsurf/README.md) for details.
+</details>
+
+<details>
+<summary><strong>Kiro CLI</strong></summary>
+
+Each agent becomes a skill in `~/.kiro/skills/agency-<slug>/`.
+
+```bash
+./scripts/install.sh --tool kiro
+```
+
+Activate in Kiro CLI:
+```
+Use the agency-frontend-developer skill to review this component.
+```
+
+See [integrations/kiro/README.md](integrations/kiro/README.md) for details.
 </details>
 
 ---
