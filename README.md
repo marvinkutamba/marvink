@@ -188,6 +188,7 @@ The unique specialists who don't fit in a box.
 | 📈 [Data Consolidation Agent](specialized/data-consolidation-agent.md) | Sales data aggregation, dashboard reports | Territory summaries, rep performance, pipeline snapshots |
 | 📬 [Report Distribution Agent](specialized/report-distribution-agent.md) | Automated report delivery | Territory-based report distribution, scheduled sends |
 | 🔐 [Agentic Identity & Trust Architect](specialized/agentic-identity-trust.md) | Agent identity, authentication, trust verification | Multi-agent identity systems, agent authorization, audit trails |
+| ⚙️ [Automation Architect & Auditor (n8n)](specialized/n8n-orchestrator-agent.md) | n8n governance, automation architecture, risk auditing | Evaluate, standardize, and safeguard business automations with audit-first criteria |
 
 ---
 
@@ -324,7 +325,7 @@ Each agent is designed with:
 
 ## 📊 Stats
 
-- 🎭 **61 Specialized Agents** across 9 divisions
+- 🎭 **62 Specialized Agents** across 9 divisions
 - 📝 **10,000+ lines** of personality, process, and code examples
 - ⏱️ **Months of iteration** from real-world usage
 - 🌟 **Battle-tested** in production environments
