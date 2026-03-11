@@ -23,7 +23,9 @@
     "skill://~/.kiro/skills-library/agency-frontend-developer/SKILL.md",
     "skill://~/.kiro/skills-library/agency-backend-architect/SKILL.md",
     "skill://~/.kiro/skills-library/agency-security-engineer/SKILL.md",
-    "skill://~/.kiro/skills-library/agency-devops-automator/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-systematic-debugger/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-code-reviewer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-git-workflow-master/SKILL.md",
     "file://README.md",
     "file://package.json",
     "file://tsconfig.json"

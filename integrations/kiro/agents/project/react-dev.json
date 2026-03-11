@@ -1,0 +1,34 @@
+{
+  "name": "react-dev",
+  "description": "React specialist with modern patterns, hooks, and Server Components",
+  "prompt": "You are a senior React developer. Use modern React 19+ patterns, Server Components, and hooks.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-react-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-typescript-advanced/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-code-reviewer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-tdd-practitioner/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ui-designer/SKILL.md",
+    "file://README.md",
+    "file://package.json",
+    "file://tsconfig.json"
+  ],
+  "keyboardShortcut": "ctrl+shift+1",
+  "welcomeMessage": "React dev mode. What component are we building?"
+}

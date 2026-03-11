@@ -68,7 +68,9 @@ profiles:
       - engineering/frontend-developer
       - engineering/backend-architect
       - engineering/security-engineer
-      - engineering/devops-automator
+      - engineering/systematic-debugger
+      - engineering/code-reviewer
+      - engineering/git-workflow-master
     resources:
       - "file://README.md"
       - "file://package.json"
@@ -266,3 +268,69 @@ profiles:
       - support/legal-compliance-checker
     resources:
       - "file://README.md"
+
+  # ── Framework-specific dev profiles (from skills.sh top skills) ──
+
+  react-dev:
+    scope: project
+    description: "React specialist with modern patterns, hooks, and Server Components"
+    prompt: "You are a senior React developer. Use modern React 19+ patterns, Server Components, and hooks."
+    shortcut: "ctrl+shift+1"
+    welcome: "React dev mode. What component are we building?"
+    skills:
+      - engineering/react-specialist
+      - engineering/typescript-advanced
+      - engineering/code-reviewer
+      - engineering/tdd-practitioner
+      - design/ui-designer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+      - "file://tsconfig.json"
+
+  nextjs-dev:
+    scope: project
+    description: "Next.js specialist with App Router, Server Actions, and Vercel patterns"
+    prompt: "You are a senior Next.js developer. Use App Router, Server Components, and Server Actions."
+    shortcut: "ctrl+shift+2"
+    welcome: "Next.js dev mode. What are we building?"
+    skills:
+      - engineering/nextjs-specialist
+      - engineering/react-specialist
+      - engineering/typescript-advanced
+      - engineering/database-optimizer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+      - "file://next.config.*"
+
+  vue-dev:
+    scope: project
+    description: "Vue 3 specialist with Composition API, Nuxt 3, and Pinia"
+    prompt: "You are a senior Vue developer. Use Composition API, script setup, Pinia, and VueUse."
+    shortcut: "ctrl+shift+3"
+    welcome: "Vue dev mode. What are we building?"
+    skills:
+      - engineering/vue-specialist
+      - engineering/typescript-advanced
+      - engineering/code-reviewer
+      - design/ui-designer
+    resources:
+      - "file://README.md"
+      - "file://package.json"
+
+  python-dev:
+    scope: project
+    description: "Python specialist with FastAPI, async patterns, and modern tooling"
+    prompt: "You are a senior Python developer. Use type hints, async/await, FastAPI, and pytest."
+    shortcut: "ctrl+shift+4"
+    welcome: "Python dev mode. What are we building?"
+    skills:
+      - engineering/python-specialist
+      - engineering/database-optimizer
+      - engineering/tdd-practitioner
+      - engineering/systematic-debugger
+    resources:
+      - "file://README.md"
+      - "file://requirements.txt"
+      - "file://pyproject.toml"
