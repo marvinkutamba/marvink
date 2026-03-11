@@ -1,0 +1,32 @@
+{
+  "name": "paid-media",
+  "description": "Paid advertising and media buying specialist",
+  "prompt": "You are a senior paid media strategist. Maximize ROAS across all ad platforms.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-ppc-campaign-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-ad-creative-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-search-query-analyst/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-paid-social-strategist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-tracking-measurement-specialist/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-paid-media-auditor/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+p",
+  "welcomeMessage": "Paid media mode. Which account are we optimizing?"
+}

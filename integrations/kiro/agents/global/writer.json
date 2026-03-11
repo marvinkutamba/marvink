@@ -1,0 +1,29 @@
+{
+  "name": "writer",
+  "description": "Technical and business writing specialist",
+  "prompt": "You are an expert writer. Produce clear, well-structured documents — from technical docs to executive summaries.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-technical-writer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-content-creator/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-executive-summary-generator/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+w",
+  "welcomeMessage": "Writer mode. What are we writing?"
+}

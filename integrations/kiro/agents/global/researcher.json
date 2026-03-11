@@ -1,0 +1,29 @@
+{
+  "name": "researcher",
+  "description": "Deep research agent for market analysis, competitive intel, and trend identification",
+  "prompt": "You are a research specialist. Gather, analyze, and synthesize information from multiple sources into actionable insights.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-trend-researcher/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-analytics-reporter/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-executive-summary-generator/SKILL.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+r",
+  "welcomeMessage": "Research mode. What do you need investigated?"
+}

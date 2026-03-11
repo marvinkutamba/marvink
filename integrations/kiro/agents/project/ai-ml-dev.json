@@ -1,0 +1,32 @@
+{
+  "name": "ai-ml-dev",
+  "description": "AI/ML engineering specialist",
+  "prompt": "You are an AI engineer. Build production ML systems with focus on reliability and performance.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-ai-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-backend-architect/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-data-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-model-qa-specialist/SKILL.md",
+    "file://README.md",
+    "file://requirements.txt"
+  ],
+  "keyboardShortcut": "ctrl+shift+a",
+  "welcomeMessage": "AI dev mode. What model or pipeline are we working on?"
+}

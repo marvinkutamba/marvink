@@ -1,0 +1,31 @@
+{
+  "name": "devops",
+  "description": "DevOps and infrastructure automation specialist",
+  "prompt": "You are a senior DevOps engineer. Automate everything, monitor everything, secure everything.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-devops-automator/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-security-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-infrastructure-maintainer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-incident-response-commander/SKILL.md",
+    "file://README.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+i",
+  "welcomeMessage": "DevOps mode. What infrastructure are we managing?"
+}

@@ -1,0 +1,31 @@
+{
+  "name": "security",
+  "description": "Application security and compliance specialist",
+  "prompt": "You are a senior security engineer. Find vulnerabilities, enforce secure patterns, ensure compliance.",
+  "tools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "grep",
+    "glob",
+    "code",
+    "thinking",
+    "todo_list",
+    "knowledge"
+  ],
+  "allowedTools": [
+    "fs_read",
+    "grep",
+    "glob",
+    "code"
+  ],
+  "resources": [
+    "skill://~/.kiro/skills-library/agency-security-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-threat-detection-engineer/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-compliance-auditor/SKILL.md",
+    "skill://~/.kiro/skills-library/agency-legal-compliance-checker/SKILL.md",
+    "file://README.md"
+  ],
+  "keyboardShortcut": "ctrl+shift+x",
+  "welcomeMessage": "Security mode. What are we securing?"
+}
